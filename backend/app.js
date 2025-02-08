@@ -36,11 +36,11 @@ app.post('/available-keys', (req, res) => {
         const availableKeys = keys.filter(key => user.authorizedKeys.includes(key));
         res.status(200).json({ availableKeys });
     } else {
-        res.status(401).jsan({ message: 'Unauthorized' });
+        res.status(401).json({ message: 'Unauthorized' });
     }
 });
 
 // Start the server
 app.listen(PORT, () => {
-    console.log('Server is running on port ${PORT}');
+    console.log(`Server is running on port ${PORT}`);
 });
