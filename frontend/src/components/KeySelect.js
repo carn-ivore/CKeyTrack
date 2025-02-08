@@ -26,3 +26,5 @@ const KeySelect = ({ user, setView, setSelectedKey }) => {
         </div>
     );
 };
+
+export default KeySelect;
