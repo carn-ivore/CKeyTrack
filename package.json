@@ -16,5 +16,8 @@
     "url": "https://github.com/carn-ivore/CKeyTrack/issues"
   },
   "homepage": "https://github.com/carn-ivore/CKeyTrack#readme",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
 }
