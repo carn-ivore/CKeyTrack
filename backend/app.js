@@ -15,6 +15,18 @@ const users = [
 
 const keys = ['Key A', 'Key B'];
 
+// Route for entering PIN
+app.post('/login', (req, res) => {
+    const { pin } = req.body;
+    const user = users.find(user => user.pin === pin);
+
+    if (user) {
+        res.status(200).json({ user });
+    } else {
+        res.status(401).json({ message: 'Invalid PIN' });
+    }
+});
+
 // Define a simple route to test the server
 app.get('/', (req, res) => {
     res.send('Welcome to the Key Checkout App');
