@@ -1,25 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+// App.js
 
-function App() {
+import React, { useState } from 'react';
+import LoginPage from './components/LoginPage';
+import KeySelect from './components/KeySelect';
+import ConfirmPage from './components/ConfirmPage';
+
+const App = () => {
+  const [view, setView] = useState('LoginPage');
+  const [user, setUser] = useState(null);
+  const [selectedKey, setSelectedKey] = useState(null);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {view === 'LoginPage' && <LoginPage setUser={setUser} setView={setView} />}
+      {view === 'KeySelect' && <KeySelect user={user} setView={setView} setSelectedKey={setSelectedKey} />}
+      {view === 'ConfirmPage' && <ConfirmPage user={user} selectedKey={selectedKey} />}
     </div>
   );
-}
+};
 
 export default App;
