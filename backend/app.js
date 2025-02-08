@@ -27,9 +27,17 @@ app.post('/login', (req, res) => {
     }
 });
 
-// Define a simple route to test the server
-app.get('/', (req, res) => {
-    res.send('Welcome to the Key Checkout App');
+// Route for getting available keys
+app.post('/available-keys', (req, res) => {
+    const { pin } = req.body;
+    const user = users.find(user => user.pin === pin);
+
+    if (user) {
+        const availableKeys = keys.filter(key => user.authorizedKeys.includes(key));
+        res.status(200).json({ availableKeys });
+    } else {
+        res.status(401).jsan({ message: 'Unauthorized' });
+    }
 });
 
 // Start the server
