@@ -3,7 +3,7 @@
 import React, { useEffect } from 'react';
 import './ConfirmPage.css'; // Import the CSS file
 
-const ConfirmPage = ({ user, selectedKey }) => {
+const ConfirmPage = ({ user, selectedKey, setView }) => {
     useEffect(() => {
         // Set a timer to reset the view after 5 seconds
         const timer = setTimeout(() => {
