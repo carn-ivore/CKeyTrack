@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import axios from 'axios';
+import './LoginPage.css'; // Import th CSS file
 
 const LoginPage = ({ setUser, setView }) => {
     const [pin, setPin] = useState('');
@@ -37,31 +38,6 @@ const LoginPage = ({ setUser, setView }) => {
             </div>
         </div>
     );
-};
-
-const styles = {
-    container: {
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        height: '100vh',
-    },
-    input: {
-        fontSize: '18px',
-        padding: '10px',
-        margin: '10px',
-        width: '200px',
-    },
-    button: {
-        fontSize: '18px',
-        padding: '10px 20px',
-        cursor: 'pointer',
-    },
-    error: {
-        color: 'red',
-        marginTop: '10px',
-    },
 };
 
 export default LoginPage;
