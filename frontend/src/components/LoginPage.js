@@ -9,7 +9,7 @@ const LoginPage = ({ setUser, setView }) => {
 
     const handleLogin = async () => {
         try {
-            const response = await axios.post('/login', { pin });
+            const response = await axios.post('http://localhost:5000/login', { pin });
             setUser(response.data.user);
             setView('KeySelect');            
         }   catch (error) {
