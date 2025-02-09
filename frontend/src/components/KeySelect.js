@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './KeySelect.css'; // Import the CSS file
+import ConfirmPage from './ConfirmPage'; // Import ConfirmPage
 
 const KeySelect = ({ user, setView, setSelectedKey }) => {
     const [availableKeys, setAvailableKeys] = useState([]);
