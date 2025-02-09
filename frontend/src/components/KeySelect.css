@@ -1,0 +1,31 @@
+/* KeySelect.css */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.key {
+    width: 80px; /* Adjust width as needed */
+    height: 80px; /* Adjust height as needed */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #007bff; /* Button color */
+    color: white;
+    font-size: 18px;
+    margin: 10px; /* Space between keys */
+    border-radius: 8px; /* Rounded corners */
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.key:hover {
+    background-color: #0056b3; /*Darker shade on hover */    
+}
+
+h2 {
+    margin-bottom: 20px;
+}
