@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import './KeySelect.css'; // Import the CSS file
 
 const KeySelect = ({ user, setView, setSelectedKey }) => {
     const [availableKeys, setAvailableKeys] = useState([]);
@@ -16,10 +17,14 @@ const KeySelect = ({ user, setView, setSelectedKey }) => {
     }, [user.pin]);
 
     return (
-        <div>
+        <div className="container">
           <h2>Select a Key</h2>
           {availableKeys.map((key, index) => (
-            <div key={index} onClick={() => { setSelectedKey(key); setView('ConfirmPage'); }}>
+            <div
+              key={index}
+              className="key"
+              onClick={() => { setSelectedKey(key); setView('ConfirmPage'); }}
+            >
               {key}
             </div>
           ))}
