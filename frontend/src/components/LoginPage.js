@@ -8,7 +8,7 @@ const LoginPage = ({ setUser, setView }) => {
     const [error, setError] = useState('');
 
     const handleLogin = async () => {
-        console.lolg('Entered PIN:', pin); // Log the entered PIN
+        console.log('Entered PIN:', pin); // Log the entered PIN
         try {
             const response = await axios.post('http://localhost:5000/login', { pin });
             setUser(response.data.user);
