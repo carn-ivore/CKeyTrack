@@ -14,7 +14,7 @@ const App = () => {
     <div>
       {view === 'LoginPage' && <LoginPage setUser={setUser} setView={setView} />}
       {view === 'KeySelect' && <KeySelect user={user} setView={setView} setSelectedKey={setSelectedKey} />}
-      {view === 'ConfirmPage' && <ConfirmPage user={user} selectedKey={selectedKey} />}
+      {view === 'ConfirmPage' && <ConfirmPage user={user} selectedKey={selectedKey} setView={setView} />}
     </div>
   );
 };
