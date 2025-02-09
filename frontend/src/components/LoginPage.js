@@ -19,18 +19,22 @@ const LoginPage = ({ setUser, setView }) => {
     };
     
     return (
-        <div style={StyleSheet.container}>
-            <h2>Enter PIN</h2>
-            <input
-                type="password"
-                value={pin}
-                onChange={e => setPin(e.target.value)}
-                style={StyleSheet.input}
-            />
-            <button onClick={handleLogin} style={StyleSheet.button}>
-                Enter
-            </button>
-            {error && <p style={StyleSheet.error}>{error}</p>}
+        <div className="body">
+            <div className="container">
+                <h2>Key Checkout System</h2>
+                <label htmlFor="pin">Enter PIN:</label>
+                <input
+                    type="password"
+                    id="pin"
+                    value={pin}
+                    onChange={e => setPin(e.target.value)}
+                    maxLength="4"
+                />
+                <button onClick={handleLogin}>
+                    Login
+                </button>
+                {error && <p className="error">{error}</p>}
+            </div>
         </div>
     );
 };
