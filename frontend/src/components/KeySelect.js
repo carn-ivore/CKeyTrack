@@ -8,7 +8,7 @@ const KeySelect = ({ user, setView, setSelectedKey }) => {
 
     useEffect(() => {
         const fetchAvailableKeys = async () => {
-            const response = await axios.post('/available-keys', { pin: user.pin });
+            const response = await axios.post('http://localhost:5000/available-keys', { pin: user.pin });
             setAvailableKeys(response.data.availableKeys);            
         };
 
