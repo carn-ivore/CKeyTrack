@@ -7,7 +7,7 @@ const ConfirmPage = ({ user, selectedKey }) => {
     useEffect(() => {
         // Set a timer to reset the view after 5 seconds
         const timer = setTimeout(() => {
-            setView('KeySelect'); // Reset to KeySelect view
+            setView('LoginPage'); // Reset to LoginPage view
         }, 5000); // 5000 milliseconds = 5 seconds
 
         // Cleanup the timer on component unmount
