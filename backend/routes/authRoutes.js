@@ -4,6 +4,7 @@ const express = require('express');
 const { google } = require('googleapis');
 const router = express.Router();
 const SERVICE_ACCOUNT_FILE = process.env.SERVICE_ACCOUNT_FILE;
+console.log('Using service account file:', SERVICE_ACCOUNT_FILE);
 
 // Google Sheets document ID
 const SPREADSHEET_ID = '1CjmUYw3eFfEvOJFqBQnMl-vEvhwT75Emjc5xfZoDaF4';
