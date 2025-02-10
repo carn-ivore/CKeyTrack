@@ -1,3 +1,5 @@
+// availableKeys.js
+
 const express = require('express');
 const { google } = require('googleapis');
 const router = express.Router();
@@ -13,6 +15,7 @@ const sheets = google.sheets({ version: 'v4', auth });
 
 // Route for getting available keys
 router.post('/', async (req, res) => {
+  console.log('Received availableKeys part');
   const { pin } = req.body;
 
   try {
