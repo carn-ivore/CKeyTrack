@@ -12,7 +12,7 @@ const LoginPage = ({ setUser, setView }) => {
     const handleLogin = async () => {
         console.log('Entered PIN:', pin); // Log the entered PIN
         try {
-            const response = await axios.post('http://localhost:5000/authRoutes', { pin });
+            const response = await axios.post('http://localhost:5000/login', { pin });
             setUser(response.data.user);
             setView('KeySelect');            
         } catch (error) {
