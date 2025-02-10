@@ -19,7 +19,8 @@ const sheets = google.sheets({ version: 'v4', auth });
 
 // Route for entering PIN
 router.post('/', async (req, res) => {
-  const { pin } = req.body;
+  console.log('Received login request');
+    const { pin } = req.body;
 
   try {
     // Read employee data from Google Sheets
