@@ -12,11 +12,6 @@ app.use(cors());
 // Middleware to parse JSON requests
 app.use(express.json());
 
-// Use CORS middleware
-app.use(cors());
-// Middleware to parse JSON requests
-app.use(express.json());
-
 // Import routes
 const authRoutes = require('./routes/authRoutes');
 const availableKeysRoute = require('./routes/availableKeys');

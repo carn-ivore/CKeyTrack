@@ -43,6 +43,12 @@ router.post('/', async (req, res) => {
   }
 });
 
+// Route for logging in with PIN
+router.post('/login', (req, res) => {
+    const { pin } = req.body;
+    // The logic for handling the login goes here, I don't know what that is going to be at the moment
+    // I'm guessing I'm going to need an app.use statement following the router.post thing
+})
 // Function to get authorized keys for a user
 async function getAuthorizedKeys(eID) {
     try {
