@@ -17,7 +17,7 @@ const authRoutes = require('./routes/authRoutes');
 const availableKeysRoute = require('./routes/availableKeys');
 
 // Use routes
-app.use('/authRoutes', authRoutes);
+app.use('/login', authRoutes);
 app.use('/available-keys', availableKeysRoute);
 
 // Start the server
