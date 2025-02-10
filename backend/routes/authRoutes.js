@@ -18,7 +18,7 @@ const auth = new google.auth.GoogleAuth({
 const sheets = google.sheets({ version: 'v4', auth });
 
 // Route for entering PIN
-router.post('/login', async (req, res) => {
+router.post('/', async (req, res) => {
   console.log('Received login request');
     const { pin } = req.body;
 
