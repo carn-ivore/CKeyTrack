@@ -18,7 +18,7 @@ app.use(cors());
 app.use(express.json());
 
 // Import routes
-const authRoutes = require('.routes/authRoutes');
+const authRoutes = require('./routes/authRoutes');
 const availableKeysRoute = require('./routes/availableKeys');
 
 // Use routes
