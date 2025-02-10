@@ -1,9 +1,7 @@
 // authRoutes.js
 
 const express = require('express');
-const router = express.Router();
 const { google } = require('googleapis');
-const sheets = require('./sheets');
 const SERVICE_ACCOUNT_FILE = process.env.SERVICE_ACCOUNT_FILE;
 
 // Google Sheets document ID
