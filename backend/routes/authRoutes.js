@@ -3,7 +3,7 @@
 const express = require('express');
 const router = express.Router();
 const { google } = require('googleapis');
-const auth = require('./authHelper');
+const { auth, SPREADSHEET_ID } = require('./authHelper');
 
 // Route for entering PIN
 router.post('/', async (req, res) => {
