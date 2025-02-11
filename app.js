@@ -14,7 +14,7 @@ app.use(express.json());
 
 // Import routes
 const authRoutes = require('./backend/routes/authRoutes');
-const availableKeysRoute = require('./backend/routes/availableKeys');
+const availableKeysRoute = require('./backend/routes/availableKeysRoutes');
 
 // Use routes
 app.use('/login', authRoutes);

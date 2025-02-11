@@ -1,8 +1,8 @@
 // availableKeys.js
 
 const express = require('express');
-const { google } = require('googleapis');
 const router = express.Router();
+const auth = require('./authHelper');
 
 // Route for getting available keys
 router.post('/', async (req, res) => {
