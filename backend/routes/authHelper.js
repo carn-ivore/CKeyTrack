@@ -1,9 +1,8 @@
 const { google } = require('googleapis');
 const SERVICE_ACCOUNT_FILE = process.env.SERVICE_ACCOUNT_FILE;
-console.log('Using service account file:', SERVICE_ACCOUNT_FILE);
-
-// Google Sheets document ID
-const SPREADSHEET_ID = '1CjmUYw3eFfEvOJFqBQnMl-vEvhwT75Emjc5xfZoDaF4';
+console.log('Using SERVICE_ACCOUNT_FILE', SERVICE_ACCOUNT_FILE);
+const SPREADSHEET_ID = process.env.SPREADSHEET_ID;
+console.log('Got to the SPREADSHEET_ID part');
 
 // Create a JWT client
 const auth = new google.auth.GoogleAuth({
