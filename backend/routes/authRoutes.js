@@ -1,22 +1,8 @@
 // authRoutes.js
 
 const express = require('express');
-const { google } = require('googleapis');
 const router = express.Router();
-const SERVICE_ACCOUNT_FILE = process.env.SERVICE_ACCOUNT_FILE;
-console.log('Using service account file:', SERVICE_ACCOUNT_FILE);
-
-// Google Sheets document ID
-const SPREADSHEET_ID = '1CjmUYw3eFfEvOJFqBQnMl-vEvhwT75Emjc5xfZoDaF4';
-
-// Create a JWT client
-const auth = new google.auth.GoogleAuth({
-    keyFile: SERVICE_ACCOUNT_FILE,
-    scopes: ['https://www.googleapis.com/auth/spreadsheets'],
-  });
-
-  // Create a Google Sheets API client
-const sheets = google.sheets({ version: 'v4', auth });
+const auth = require('./authHelper');
 
 // Route for entering PIN
 router.post('/', async (req, res) => {
