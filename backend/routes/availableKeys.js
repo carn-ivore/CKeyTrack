@@ -3,8 +3,6 @@
 const express = require('express');
 const { google } = require('googleapis');
 const router = express.Router();
-const SERVICE_ACCOUNT_FILE = process.env.SERVICE_ACCOUNT_FILE;
-const SPREADSHEET_ID = '1CjmUYw3eFfEvOJFqBQnMl-vEvhwT75Emjc5xfZoDaF4';
 
 const auth = new google.auth.GoogleAuth({
   keyFile: SERVICE_ACCOUNT_FILE,
