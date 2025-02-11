@@ -2,7 +2,7 @@
 
 const express = require('express');
 const router = express.Router();
-const auth = require('./authHelper');
+const { auth, SPREADSHEET_ID } = require('./authHelper');
 
 // Route for getting available keys
 router.post('/', async (req, res) => {
