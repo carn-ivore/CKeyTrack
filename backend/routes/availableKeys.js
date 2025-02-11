@@ -4,11 +4,6 @@ const express = require('express');
 const { google } = require('googleapis');
 const router = express.Router();
 
-const auth = new google.auth.GoogleAuth({
-  keyFile: SERVICE_ACCOUNT_FILE,
-  scopes: ['https://www.googleapis.com/auth/spreadsheets'],
-});
-
 const sheets = google.sheets({ version: 'v4', auth });
 
 // Route for getting available keys
