@@ -2,6 +2,7 @@
 
 const express = require('express');
 const router = express.Router();
+const { google } = require('googleapis');
 const { auth, SPREADSHEET_ID } = require('./authHelper');
 
 // Route for getting available keys
