@@ -11,6 +11,7 @@ router.post('/', async (req, res) => {
     const { pin } = req.body;
 
   try {
+    // Create a Google Sheets API client
     const sheets = google.sheets({ version: 'v4', auth });
     // Read employee data from Google Sheets
     const response = await sheets.spreadsheets.values.get({
