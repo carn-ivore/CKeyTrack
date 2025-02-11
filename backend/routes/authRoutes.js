@@ -2,6 +2,7 @@
 
 const express = require('express');
 const router = express.Router();
+const { google } = require('googleapis');
 const auth = require('./authHelper');
 
 // Route for entering PIN
@@ -10,6 +11,7 @@ router.post('/', async (req, res) => {
     const { pin } = req.body;
 
   try {
+    const sheets = google.sheets({ version: 'v4', auth });
     // Read employee data from Google Sheets
     const response = await sheets.spreadsheets.values.get({
       spreadsheetId: SPREADSHEET_ID,
@@ -41,6 +43,7 @@ router.post('/', async (req, res) => {
 // Function to get authorized keys for a user
 async function getAuthorizedKeys(eID) {
     try {
+        const sheets = google.sheets({ version: 'v4', auth });
         const response = await sheets.spreadsheets.values.get({
             spreadsheetId: SPREADSHEET_ID,
             range: 'authorizedKeysSheet!A2:C', // Getting column C so we can later eliminate expired authorizations
