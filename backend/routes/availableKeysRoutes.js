@@ -20,7 +20,13 @@ router.post('/', async (req, res) => {
     });
 
     const rows = response.data.values;
+      console.log('Rows from Google Sheets:', rows);
     const user = rows.find(row => row[3] === pin);
+    
+    // Handles empty rows
+    if (!rows || rows.length === 0) {
+      return res.status(404).json({ message: 'No data found' });
+    }
 
     if (user) {
       const authorizedKeys = await getAuthorizedKeys(user[0]);
