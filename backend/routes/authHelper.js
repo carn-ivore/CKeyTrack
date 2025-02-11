@@ -1,4 +1,5 @@
 const { google } = require('googleapis');
+require('dotenv').config(); // Load environment variables from .env file
 const SERVICE_ACCOUNT_FILE = process.env.SERVICE_ACCOUNT_FILE;
 console.log('Using SERVICE_ACCOUNT_FILE', SERVICE_ACCOUNT_FILE);
 const SPREADSHEET_ID = process.env.SPREADSHEET_ID;
