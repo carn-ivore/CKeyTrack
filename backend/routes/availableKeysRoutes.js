@@ -2,6 +2,7 @@
 
 const express = require('express');
 const router = express.Router();
+const { getAuthorizedKeys } = require('./authRoutes'); // Brings in the getAuthorizedKeys function
 const { google } = require('googleapis');
 const { auth, SPREADSHEET_ID } = require('./authHelper');
 

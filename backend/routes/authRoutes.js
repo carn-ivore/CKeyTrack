@@ -62,4 +62,4 @@ async function getAuthorizedKeys(eID) {
     }
 }
 
-module.exports = router;
+module.exports = { router, getAuthorizedKeys };

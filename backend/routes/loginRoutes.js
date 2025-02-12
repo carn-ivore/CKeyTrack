@@ -1,7 +1,8 @@
 // loginRoutes.js
+
 const express = require('express');
 const router = express.Router();
-const { auth, SPREADSHEET_ID } = require('../authHelper');
+const { auth, SPREADSHEET_ID } = require('./authHelper');
 
 router.post('/login', async (req, res) => {
   console.log('Received login request');

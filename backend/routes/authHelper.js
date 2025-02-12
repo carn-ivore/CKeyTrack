@@ -1,3 +1,5 @@
+// authHelper.js
+
 const { google } = require('googleapis');
 require('dotenv').config(); // Load environment variables from .env file
 const SERVICE_ACCOUNT_FILE = process.env.SERVICE_ACCOUNT_FILE;
