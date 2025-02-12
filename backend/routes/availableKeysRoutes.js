@@ -14,6 +14,7 @@ router.post('/', async (req, res) => {
   try {
     // Create a Google Sheets API client
     const sheets = google.sheets({ version: 'v4', auth });
+    
     // Read employee data from Google Sheets
     const response = await sheets.spreadsheets.values.get({
       spreadsheetId: SPREADSHEET_ID,
@@ -22,16 +23,17 @@ router.post('/', async (req, res) => {
 
     const rows = response.data.values;
       console.log('Rows from Google Sheets:', rows);
-    const user = rows.find(row => row[3] === pin);
     
     // Handles empty rows
     if (!rows || rows.length === 0) {
       return res.status(404).json({ message: 'No data found' });
     }
 
+    const user = rows.find(row => row[3] === pin);
+    
     if (user) {
       const authorizedKeys = await getAuthorizedKeys(user[0]);
-      const availableKeys = await getAvailableKeys(authorizedKeys);
+      const availableKeys = await getAvailableKeys(authorizedKeys, sheets); // Adding sheets passes it to the function
       res.status(200).json({ availableKeys });
     } else {
       res.status(401).json({ message: 'Unauthorized' });
@@ -43,7 +45,7 @@ router.post('/', async (req, res) => {
 });
 
 // Function to get available keys based on authorized keys
-async function getAvailableKeys(authorizedKeys) {
+async function getAvailableKeys(authorizedKeys, sheets) { // Accepts sheets as an argument
   try {
     const response = await sheets.spreadsheets.values.get({
       spreadsheetId: SPREADSHEET_ID,
