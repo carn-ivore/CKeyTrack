@@ -9,20 +9,27 @@ const PORT = process.env.PORT || 5000;
 
 // Use CORS middleware
 app.use(cors({
-  origin: 'http://localhost:3000', // Should specify where to go for CORS?
+  origin: 'http://localhost:3000', // Allows requests from the frontend
 }));
 
 // Middleware to parse JSON requests
-app.use(express.json());
+app.use(express.json()); // This is essential for parsing JSON request bodies
 
 // Import routes
 const { router: authRouter } = require('./backend/routes/authRoutes');
-console.log(authRouter); // Log the imported value
 const availableKeysRoute = require('./backend/routes/availableKeysRoutes');
+
+console.log(authRouter); // Log the imported router for debugging
 
 // Use routes
 app.use('/login', authRouter);
 app.use('/available-keys', availableKeysRoute);
+
+// Optional: Middleware to log incoming requests (for debugging)
+app.use((req, res, next) => {
+  console.log('Request Body:', req.body); // Log the request body
+  next();
+});
 
 // Start the server
 app.listen(PORT, () => {

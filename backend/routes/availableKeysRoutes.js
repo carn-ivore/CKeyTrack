@@ -8,7 +8,7 @@ const { auth, SPREADSHEET_ID } = require('./authHelper');
 
 // Route for getting available keys
 router.post('/', async (req, res) => {
-  console.log('Received availableKeys part');
+  console.log('Received availableKeys part availableKeysRoutes:11');
   const { pin } = req.body;
   console.log('availableKeysRoutes:13 Received PIN:', pin);
   try {
@@ -52,9 +52,10 @@ async function getAvailableKeys(authorizedKeys, sheets) { // Accepts sheets as a
       range: 'checkOutInSheet!A2:E',
     });
 
-    const rows = response.data.values;
+    const rows = response.data.values || []; // This will have it default to an empty array if undefined
+    
     const checkedOutKeys = rows
-      .filter(row => row[2] && row[4] === '')
+      .filter(row => row[2] && row[4] === '') // "row[2]=columnC=keyID" Check in keyID (column C in checkOutInSheet, keyID column); "row[4]=columnE=checkInTimestamp" // Checks if keyID exists and that checkInTimestapm is empty
       .map(row => row[2]);
 
     return authorizedKeys.filter(key => !checkedOutKeys.includes(key));
