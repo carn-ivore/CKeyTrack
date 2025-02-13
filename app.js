@@ -8,17 +8,20 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Use CORS middleware
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:3000', // Should specify where to go for CORS?
+}));
+
 // Middleware to parse JSON requests
 app.use(express.json());
 
 // Import routes
-const authRoutes = require('./backend/routes/authRoutes');
-console.log(authRoutes); // Log the imported value
+const { router: authRouter } = require('./backend/routes/authRoutes');
+console.log(authRouter); // Log the imported value
 const availableKeysRoute = require('./backend/routes/availableKeysRoutes');
 
 // Use routes
-app.use('/login', authRoutes);
+app.use('/login', authRouter);
 app.use('/available-keys', availableKeysRoute);
 
 // Start the server

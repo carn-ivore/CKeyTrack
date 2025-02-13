@@ -10,7 +10,7 @@ const { auth, SPREADSHEET_ID } = require('./authHelper');
 router.post('/', async (req, res) => {
   console.log('Received availableKeys part');
   const { pin } = req.body;
-
+  console.log('availableKeysRoutes:13 Received PIN:', pin);
   try {
     // Create a Google Sheets API client
     const sheets = google.sheets({ version: 'v4', auth });
@@ -40,7 +40,7 @@ router.post('/', async (req, res) => {
     }
   } catch (error) {
     console.error('Error reading data:', error);
-    res.status(500).json({ message: 'Internal Server Error' });
+    res.status(500).json({ message: 'Internal Server Error availableKeysRoutes:43' });
   }
 });
 

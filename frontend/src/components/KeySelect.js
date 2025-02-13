@@ -3,17 +3,20 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './KeySelect.css'; // Import the CSS file
-import ConfirmPage from './ConfirmPage';
 
 const KeySelect = ({ user, setView, setSelectedKey }) => {
     const [availableKeys, setAvailableKeys] = useState([]);
 
     useEffect(() => {
         const fetchAvailableKeys = async () => {
-            const response = await axios.post('http://localhost:5000/available-keys', { pin: user.pin });
-            setAvailableKeys(response.data.availableKeys);            
-        };
-
+          try {  
+          const response = await axios.post('http://localhost:5000/available-keys', { pin: user.pin });
+            console.log('Sending PIN:', user.pin);  
+          setAvailableKeys(response.data.availableKeys);            
+        } catch (error) {
+            console.error('Error fetching available keys:', error);
+        }
+      };    
         fetchAvailableKeys();
     }, [user.pin]);
 

@@ -7,7 +7,7 @@ const { auth, SPREADSHEET_ID } = require('./authHelper');
 
 // Route for entering PIN
 router.post('/', async (req, res) => {
-  console.log('Received login request');
+  console.log('Received login request (authRoutes:10)');
     const { pin } = req.body;
 
   try {
@@ -29,8 +29,8 @@ router.post('/', async (req, res) => {
       res.status(401).json({ message: 'Invalid PIN'});
     }
   } catch (error) {
-    console.error('Error reading data:', error);
-    res.status(500).json({ message: 'Internal Server Error' });
+    console.error('(authRoutes:32) Error reading data:', error);
+    res.status(500).json({ message: 'Internal Server Error authRoutes:33' });
   }
 });
 
