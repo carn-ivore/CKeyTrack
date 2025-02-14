@@ -24,7 +24,7 @@ router.post('/', async (req, res) => {
     
     if (user) {
       const authorizedKeys = await getAuthorizedKeys(user[0]);
-      res.status(200).json({ user: { eID: user[0], name: user[1], authorizedKeys } });
+      res.status(200).json({ user: { eID: user[0], name: user[1], authorizedKeys } }); // This is what appears on Postman
     } else {
       res.status(401).json({ message: 'Invalid PIN'});
     }

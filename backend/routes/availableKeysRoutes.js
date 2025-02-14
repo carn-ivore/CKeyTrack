@@ -7,10 +7,10 @@ const { google } = require('googleapis');
 const { auth, SPREADSHEET_ID } = require('./authHelper');
 
 // Route for getting available keys
-router.post('/', async (req, res) => {
+router.post('/available-keys', async (req, res) => {
   console.log('Received availableKeys part availableKeysRoutes:11');
   const { pin } = req.body;
-  console.log('availableKeysRoutes:13 Received PIN:', pin);
+
   try {
     // Create a Google Sheets API client
     const sheets = google.sheets({ version: 'v4', auth });
@@ -29,11 +29,21 @@ router.post('/', async (req, res) => {
       return res.status(404).json({ message: 'No data found' });
     }
 
+    // Find user by entered PIN    
     const user = rows.find(row => row[3] === pin);
     
     if (user) {
-      const authorizedKeys = await getAuthorizedKeys(user[0]);
+      const eID = user[0];
+      console.log('Found this eID:', eID);
+
+      // Get authorized keys for this eID
+      const authorizedKeys = await getAuthorizedKeys(eID);
+      console.log('Authorized keys for eID:', authorizedKeys);
+
+      // Get available keys that are not checked out
       const availableKeys = await getAvailableKeys(authorizedKeys, sheets); // Adding sheets passes it to the function
+      console.log('Available keys:', availableKeys);
+      
       res.status(200).json({ availableKeys });
     } else {
       res.status(401).json({ message: 'Unauthorized' });

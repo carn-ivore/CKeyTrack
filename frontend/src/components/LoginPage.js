@@ -13,7 +13,7 @@ const LoginPage = ({ setUser, setView }) => {
         console.log('Entered PIN:', pin); // Log the entered PIN
         try {
             const response = await axios.post('http://localhost:5000/login', { pin });
-            setUser(response.data.user);
+            setUser(response.data.user); // Store full user data, including eID
             setView('KeySelect');            
         } catch (error) {
             setError('Invalid PIN');
