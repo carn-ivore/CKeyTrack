@@ -4,20 +4,24 @@ const express = require('express');
 const cors = require('cors');
 require('dotenv').config(); // Load environment variables from .env file
 
-const app = express();
 const PORT = process.env.PORT || 5000;
+
+// Import routes
+const { router: authRouter } = require('./backend/routes/authRoutes');
+const availableKeysRoute = require('./backend/routes/availableKeysRoutes');
+
+const app = express();
 
 // Use CORS middleware
 app.use(cors({
   origin: 'http://localhost:3000', // Allows requests from the frontend
+  methods: ['GET', 'POST'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
 // Middleware to parse JSON requests
 app.use(express.json()); // This is essential for parsing JSON request bodies
 
-// Import routes
-const { router: authRouter } = require('./backend/routes/authRoutes');
-const availableKeysRoute = require('./backend/routes/availableKeysRoutes');
 
 console.log(authRouter); // Log the imported router for debugging
 

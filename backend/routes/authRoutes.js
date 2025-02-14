@@ -16,7 +16,7 @@ router.post('/', async (req, res) => {
     // Read employee data from Google Sheets
     const response = await sheets.spreadsheets.values.get({
       spreadsheetId: SPREADSHEET_ID,
-      range: 'employeeInfoSheet!A2:D', 
+      range: 'Employee!A2:D', 
     });
 
     const rows = response.data.values;
@@ -24,7 +24,7 @@ router.post('/', async (req, res) => {
     
     if (user) {
       const authorizedKeys = await getAuthorizedKeys(user[0]);
-      res.status(200).json({ user: { eID: user[0], name: user[1], authorizedKeys } }); // This is what appears on Postman
+      res.status(200).json({ user: { employee_id: user[0], first_name: user[1], authorizedKeys } }); // This is what appears on Postman
     } else {
       res.status(401).json({ message: 'Invalid PIN'});
     }
@@ -42,18 +42,18 @@ router.post('/', async (req, res) => {
 *})
 */
 // Function to get authorized keys for a user
-async function getAuthorizedKeys(eID) {
+async function getAuthorizedKeys(employee_id) {
     try {
         const sheets = google.sheets({ version: 'v4', auth });
         const response = await sheets.spreadsheets.values.get({
             spreadsheetId: SPREADSHEET_ID,
-            range: 'authorizedKeysSheet!A2:C', // Getting column C so we can later eliminate expired authorizations
+            range: 'Authorization!A2:D', // Getting column C so we can later eliminate expired authorizations
         });
   
         const rows = response.data.values;
         const authorizedKeys = rows
-            .filter(row => row[0] === eID) // Filter by eID
-            .map(row => row[1]); // Get Key IDs
+            .filter(row => row[1] === employee_id) // Filter by employee_id
+            .map(row => row[2]); // Get Key IDs
   
         return authorizedKeys;
     } catch (error) {

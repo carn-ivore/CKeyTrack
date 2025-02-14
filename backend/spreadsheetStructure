@@ -25,7 +25,7 @@
 
 | row[0]           | row[1]      | row[2] | row[3]
 
-| authorization_id | employee_id | key_id | authorizationExpiration
+| authorization_id | employee_id | key_id | authorization_expiration
 | 1                | 1           | A      | 8/21/2025 10:52:42
 | 2                | 1           | B      | 8/21/2025 10:52:42
 | 3                | 1           | C      | 8/21/2025 10:52:42
@@ -36,10 +36,10 @@
 
 **Sheet: Transaction**
 
-| row[0]        | row[1]  | row[2] | row[3]              | row[4]
+| row[0]         | row[1]          | row[2]  | row[3]               | row[4]
 
-| transactionID | eID     | keyID  | checkOutTimestamp   | checkInTimestamp
-| 1             | 1       | 1      | 1/21/2025 10:52:42  | 1/21/2025 10:52:43
+| transaction_id | employee_id     | key_id  | checkout_timestamp   | checkin_timestamp
+| 1              | 1               | 1       | 1/21/2025 10:52:42   | 1/21/2025 10:52:43
 
 
 **Spreadsheet Document Name: CKeyTrack Spreadsheet**

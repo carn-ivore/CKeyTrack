@@ -11,7 +11,7 @@ const KeySelect = ({ user, setView, setSelectedKey }) => {
     useEffect(() => {
         const fetchAvailableKeys = async () => {
           try {
-            console.log('Sending request to fetch keys available for this eID:', user.pin); // Log the eID being sent          
+            console.log('Sending request to fetch keys available for this employee_id:', user.employee_id); // Log the employee_id being sent          
             const response = await axios.post('http://localhost:5000/available-keys', { pin: user.pin });
             console.log('Response from backend:', response.data); // This logs the entire response from wherever it's getting the info  
             setAvailableKeys(response.data.availableKeys || []); // Set the available keys from the response
