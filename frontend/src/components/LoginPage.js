@@ -12,7 +12,7 @@ const LoginPage = ({ setUser, setView }) => {
     const handleLogin = async () => {
         console.log('Entered PIN:', pin); // Log the entered PIN
         try {
-            const response = await axios.post('http://localhost:5000/login', { pin });
+            const response = await axios.post('http://localhost:5000/login', { pin, employee_id: '1' });
             setUser(response.data.user); // Store full user data, including eID
             setView('KeySelect');            
         } catch (error) {

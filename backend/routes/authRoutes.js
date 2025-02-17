@@ -50,11 +50,18 @@ async function getAuthorizedKeys(employee_id) {
             range: 'Authorization!A2:D', // Getting column C so we can later eliminate expired authorizations
         });
   
-        const rows = response.data.values;
+        const rows = response.data.values || [];
+
+        // Log the retrieved authorization rows
+        console.log('Retrieved authorization rows:', rows);
+
         const authorizedKeys = rows
-            .filter(row => row[1] === employee_id) // Filter by employee_id
-            .map(row => row[2]); // Get Key IDs
-  
+            .filter(row => row[1] === employee_id.toString() && new Date(row[3]) > new Date()) // Filter by employee_id and check authorization is not expired
+            .map(row => row[2]); // Get Key IDs for authorized keys
+        
+        // Log the authorized keys
+        console.log('Authorized keys for employee_id:', authorizedKeys);
+          
         return authorizedKeys;
     } catch (error) {
         console.error('Error fetching authorized keys:', error);

@@ -9,11 +9,12 @@ const { auth, SPREADSHEET_ID } = require('./authHelper');
 // Route for getting available keys
 router.post('/', async (req, res) => {
   console.log('Received availableKeys part availableKeysRoutes:11');
-  const { pin } = req.body;
+  console.log('req.body:', req.body);
+  const { employee_id, pin } = req.body;
 
-  // Check if pin is provided
-  if (!pin) {
-    return res.status(400).json({ message: 'PIN is required' });
+  // Check if employee_id is provided
+  if (!employee_id) {
+    return res.status(400).json({ message: 'availkeysroutes:16 Employee ID is required' });
   }
 
   try {
@@ -38,18 +39,14 @@ router.post('/', async (req, res) => {
     const user = rows.find(row => row[3] === pin); // Locates the row where the entered pin and stored pin match
     
     if (user) {
-      const employee_id = user[0];
-      console.log('availableKeysRoutes:37 This is the employee_id for the given pin:', employee_id);
+      console.log('User:', user);
+      console.log('Authorization Expiration:', new Date(user[2]));
 
       // Get authorized keys for this employeeID
-      const authorizedKeys = await getAuthorizedKeys(employee_id);
+      const authorizedKeys = await getAuthorizedKeys(parseInt(user[0]));
       console.log('availableKeysRoutes:41 Authorized keys for employee_id:', authorizedKeys);
 
-      // Get available keys that are not checked out
-      const availableKeys = await getAvailableKeys(authorizedKeys, sheets); // Adding sheets passes it to the function
-      console.log('Available keys:', availableKeys);
-
-      res.status(200).json({ data: availableKeys });
+      res.status(200).json({ data: authorizedKeys });
     } else {
       res.status(401).json({ message: 'Unauthorized' });
     }
@@ -73,9 +70,12 @@ async function getAvailableKeys(authorizedKeys, sheets) { // Accepts sheets as a
     console.log('Retrieved transaction rows:', rows);
 
     const checkedOutKeys = rows
-      .filter(row => row[2] && row[4] === '') // Checks if key_id exists and that checkedin_timestamp is empty
-      .map(row => row[2]); // Extracts the key_id of checked-out keys
-    
+      .filter(row => row[1] && !row[4]) // Checks if key_id exists and that checkedin_timestamp is empty
+      .map(row => parseInt(row[1])) // Extracts the key_id of checked-out keys
+      .filter(employee_id => employee_id !== NaN) // Filter out NaN values
+      .map(employee_id => employee_id.toString()) // Convert back to string
+      .filter(row => !checkedOutKeys.includes(row)); // Extracts the key_id of checked-out keys
+
     // Log the checked out keys
     console.log('Checked out keys:', checkedOutKeys);
 

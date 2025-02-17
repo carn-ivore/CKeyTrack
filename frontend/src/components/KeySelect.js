@@ -12,20 +12,28 @@ const KeySelect = ({ user, setView, setSelectedKey }) => {
         const fetchAvailableKeys = async () => {
           try {
             console.log('Sending request to fetch keys available for this employee_id:', user.employee_id); // Log the employee_id being sent          
-            const response = await axios.post('http://localhost:5000/available-keys', { pin: user.pin });
-            console.log('Response from backend:', response.data); // This logs the entire response from wherever it's getting the info  
+            const response = await axios.post('http://localhost:5000/available-keys',  { 
+              employee_id: user.employee_id, 
+              pin: user.pin 
+            });
+            console.log('Response from backend:', response); // This logs the entire response from wherever it's getting the info  
+            console.log(response.data);
             setAvailableKeys(response.data.availableKeys || []); // Set the available keys from the response
             console.log('Available Keys:', response.data.availableKeys); // This logs the response directly           
         } catch (error) {
-            console.error('Error fetching available keys:', error.response ? error.response.data : error.message);
+          if (error.response && error.response.data) {
+            console.error('Error fetching available keys:', error.response.data);
+          } else {
+            console.error('Error fetching available keys:', error.message);
+          }
         }
       };
       
-      // Only fetch available keys if user has a eID
-      if (user?.pin) {
+      // Only fetch available keys if user has an employee_id
+      if (user?.employee_id) {
         fetchAvailableKeys();
       }
-    }, [user]); // Dependency array includes user.eID to refetch if it changes
+    }, [user]); // Dependency array includes user.employee_id to refetch if it changes
 
     return (
       <div className="container">
