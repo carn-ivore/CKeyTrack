@@ -24,9 +24,7 @@ const KeySelect = ({ user, setView, setSelectedKey }) => {
                     }
                 );
                 console.log("Response from backend:", response); // This logs the entire response from wherever it's getting the info
-                console.log(response.data);
-                setAvailableKeys(response.data || []); // Set the available keys from the response
-                console.log("Available Keys:", response.data.availableKeys); // This logs the response directly
+                setAvailableKeys(response.data.data || []); // Set the available keys from the response
             } catch (error) {
                 if (error.response && error.response.data) {
                     console.error(
@@ -51,23 +49,24 @@ const KeySelect = ({ user, setView, setSelectedKey }) => {
     return (
         <div className="container">
             <h2>Select a Key</h2>
-            <ul>
+            <div className="key-container">
                 {availableKeys.length > 0 ? (
                     availableKeys.map((key, index) => (
-                        <li
+                        <div
                             key={index}
+                            className="key"
                             onClick={() => {
                                 setSelectedKey(key);
                                 setView("ConfirmPage");
                             }}
                         >
                             {key}
-                        </li>
+                        </div>
                     ))
                 ) : (
                     <p>No available keys</p>
                 )}
-            </ul>
+            </div>
             <button onClick={() => setView("LoginPage")}>Back</button>
         </div>
     );

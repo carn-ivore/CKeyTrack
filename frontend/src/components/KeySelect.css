@@ -7,6 +7,12 @@
     padding: 20px;
 }
 
+.key-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
 .key {
     width: 80px; /* Adjust width as needed */
     height: 80px; /* Adjust height as needed */
@@ -23,7 +29,7 @@
 }
 
 .key:hover {
-    background-color: #0056b3; /*Darker shade on hover */    
+    background-color: #0056b3; /*Darker shade on hover */
 }
 
 h2 {

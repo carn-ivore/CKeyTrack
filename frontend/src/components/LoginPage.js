@@ -19,6 +19,7 @@ const LoginPage = ({ setUser, setView }) => {
                 employee_id: "1",
             });
             setUser(response.data.user); // Store full user data, including eID
+            console.log("User:", response.data.user);
             setView("KeySelect");
         } catch (error) {
             setError("Invalid PIN");
