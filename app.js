@@ -9,6 +9,9 @@ const PORT = process.env.PORT || 5000;
 // Import routes
 const { router: authRouter } = require("./backend/routes/authRoutes");
 const availableKeysRoute = require("./backend/routes/availableKeysRoutes");
+const checkoutKeyRoutes = require("./backend/routes/checkoutKeyRoutes");
+const checkinKeyRoutes = require("./backend/routes/checkinKeyRoutes");
+const getKeysRoutes = require("./backend/routes/getKeysRoutes");
 
 const app = express();
 
@@ -29,6 +32,9 @@ console.log(authRouter); // Log the imported router for debugging
 // Use routes
 app.use("/login", authRouter);
 app.use("/available-keys", availableKeysRoute);
+app.use("/checkout-key", checkoutKeyRoutes);
+app.use("/checkin-key", checkinKeyRoutes);
+app.use("/get-keys", getKeysRoutes);
 
 // Optional: Middleware to log incoming requests (for debugging)
 app.use((req, res, next) => {
