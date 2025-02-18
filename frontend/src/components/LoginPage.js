@@ -1,27 +1,32 @@
+// @flow
+
 // LoginPage.js
 
-import React, { useState, useRef, useEffect } from 'react';
-import axios from 'axios';
-import './LoginPage.css'; // Import th CSS file
+import React, { useState, useRef, useEffect } from "react";
+import axios from "axios";
+import "./LoginPage.css"; // Import th CSS file
 
 const LoginPage = ({ setUser, setView }) => {
-    const [pin, setPin] = useState('');
-    const [error, setError] = useState('');
+    const [pin, setPin] = useState("");
+    const [error, setError] = useState("");
     const pinInputRef = useRef(null); // Create a ref for the input field
 
     const handleLogin = async () => {
-        console.log('Entered PIN:', pin); // Log the entered PIN
+        console.log("Entered PIN:", pin); // Log the entered PIN
         try {
-            const response = await axios.post('http://localhost:5000/login', { pin, employee_id: '1' });
+            const response = await axios.post("http://localhost:5000/login", {
+                pin,
+                employee_id: "1",
+            });
             setUser(response.data.user); // Store full user data, including eID
-            setView('KeySelect');            
+            setView("KeySelect");
         } catch (error) {
-            setError('Invalid PIN');
+            setError("Invalid PIN");
         }
     };
-    
+
     const handleKeyDown = (event) => {
-        if (event.key === 'Enter') {
+        if (event.key === "Enter") {
             handleLogin(); //Call handleLogin on Enter key press
         }
     };
@@ -39,14 +44,12 @@ const LoginPage = ({ setUser, setView }) => {
                     type="password"
                     id="pin"
                     value={pin}
-                    onChange={e => setPin(e.target.value)}
+                    onChange={(e) => setPin(e.target.value)}
                     onKeyDown={handleKeyDown} // Add key press event handler
                     ref={pinInputRef} // Attach the ref to the input
                     maxLength="4"
                 />
-                <button onClick={handleLogin}>
-                    Login
-                </button>
+                <button onClick={handleLogin}>Login</button>
                 {error && <p className="error">{error}</p>}
             </div>
         </div>
