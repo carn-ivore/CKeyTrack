@@ -11,7 +11,7 @@ const { router: authRouter } = require("./backend/routes/authRoutes");
 const availableKeysRoute = require("./backend/routes/availableKeysRoutes");
 const checkoutKeyRoutes = require("./backend/routes/checkoutKeyRoutes");
 const checkinKeyRoutes = require("./backend/routes/checkinKeyRoutes");
-const getKeysRoutes = require("./backend/routes/getKeysRoutes");
+const getKeyRoutes = require("./backend/routes/getKeyRoutes");
 
 const app = express();
 
@@ -34,7 +34,7 @@ app.use("/login", authRouter);
 app.use("/available-keys", availableKeysRoute);
 app.use("/checkout-key", checkoutKeyRoutes);
 app.use("/checkin-key", checkinKeyRoutes);
-app.use("/get-keys", getKeysRoutes);
+app.use("/get-keys", getKeyRoutes);
 
 // Optional: Middleware to log incoming requests (for debugging)
 app.use((req, res, next) => {

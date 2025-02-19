@@ -42,23 +42,9 @@
 | 1              | 1               | 1       | 1/21/2025 10:52:42   | 1/21/2025 10:52:43
 
 
-**Spreadsheet Document Name: CKeyTrack Spreadsheet**
+**Sheet: Checked Out Keys**
 
-**Sheet: employeeInfoSheet**
-eID | firstName  | lastName  | PIN
-1   | Brent      | Brent     | 1234
-2   | Aaron      | Aaron     | 2234
+| row[0]         | row[1]          | row[2]  | row[3]
 
-**Sheet: keyInfoSheet**
-keyID | keyName | Description
-1     | P.1     | Primus - Great Grand Master
-2     | AA.1    | AA - Grand Master
-3     | AA.2    | AA - Grand Master
-
-**Sheet: authorizedKeysSheet**
-eID | keyID | authorizationExpiration
-1   | 1     | 2025-08-01 11:30
-
-**Sheet: checkOutInSheet**
-transactionID | eID | keyID | checkOutTimestamp | checkInTimestamp
-1             | 1   | 1     | 2025-02-10 8:00   |
+| transaction_id | employee_id     | key_id  | checkout_timestamp
+| 1              | 1               | 1       | 1/21/2025 10:52:42
