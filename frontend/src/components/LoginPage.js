@@ -15,16 +15,27 @@ const LoginPage = ({ setUser, setView }) => {
     const pinInputRef = useRef(null); // Create a ref for the input field
 
     const handleLogin = async () => {
+        console.log("Attempting login with PIN:", pin);
         try {
-            const response = await axios.post(API_URL, {
-                action: "login",
-                pin,
-            });
+            const response = await axios.post(
+                API_URL,
+                {
+                    action: "login",
+                    pin,
+                },
+                { headers: { "Content-Type": "application/json" } }
+            );
+            console.log("Response from Apps Script:", response.data);
             if (response.data.error) throw new Error(response.data.error);
             setUser(response.data); // Store full user data, including employee_id
             setView("KeySelect");
         } catch (error) {
-            setError("Invalid PIN");
+            setError(error.message || "Network or server error");
+            console.error(
+                "Login error:",
+                error.message,
+                error.response || error
+            );
         }
     };
 
