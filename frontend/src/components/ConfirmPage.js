@@ -5,7 +5,7 @@
 import React, { useEffect } from "react";
 import "./ConfirmPage.css"; // Import the CSS file
 
-const ConfirmPage = ({ user, selectedKey, setView }) => {
+const ConfirmPage = ({ user, selectedKey, action, setView }) => {
     useEffect(() => {
         // Set a timer to reset the view after 5 seconds
         const timer = setTimeout(() => {
@@ -20,11 +20,13 @@ const ConfirmPage = ({ user, selectedKey, setView }) => {
         <div className="container">
             <h2>Confirmation</h2>
             <p>
-                We've logged that you've checked out the key set:{" "}
-                <strong>{selectedKey}</strong>.
+                {action === "checkout"
+                    ? "Checked out key: ${selectedKey}"
+                    : "Checked in key: ${selectedKey}"}
             </p>
-            <p>See you before 4:00 p.m. today when you check them back in.</p>
-            <p>Name: {user.name}</p>
+            <p>
+                Name: {user.first_name} {user.last_name}
+            </p>
         </div>
     );
 };

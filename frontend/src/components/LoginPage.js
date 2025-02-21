@@ -4,7 +4,10 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
-import "./LoginPage.css"; // Import th CSS file
+import "./LoginPage.css"; // Import the CSS file
+
+const API_URL =
+    "https://script.google.com/macros/s/AKfycbzHzQXW0_1HA18-zk_oButvLr1Ynn8n3dLQjdOnVeVLaTfovQVaewGeHwTnmSH1uUb16Q/exec";
 
 const LoginPage = ({ setUser, setView }) => {
     const [pin, setPin] = useState("");
@@ -12,14 +15,13 @@ const LoginPage = ({ setUser, setView }) => {
     const pinInputRef = useRef(null); // Create a ref for the input field
 
     const handleLogin = async () => {
-        console.log("Entered PIN:", pin); // Log the entered PIN
         try {
-            const response = await axios.post("http://localhost:5000/login", {
+            const response = await axios.post(API_URL, {
+                action: "login",
                 pin,
-                employee_id: "1",
             });
-            setUser(response.data.user); // Store full user data, including eID
-            console.log("User:", response.data.user);
+            if (response.data.error) throw new Error(response.data.error);
+            setUser(response.data); // Store full user data, including employee_id
             setView("KeySelect");
         } catch (error) {
             setError("Invalid PIN");
@@ -27,9 +29,7 @@ const LoginPage = ({ setUser, setView }) => {
     };
 
     const handleKeyDown = (event) => {
-        if (event.key === "Enter") {
-            handleLogin(); //Call handleLogin on Enter key press
-        }
+        if (event.key === "Enter") handleLogin(); //Call handleLogin on Enter key press
     };
 
     useEffect(() => {

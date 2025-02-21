@@ -11,6 +11,7 @@ const App = () => {
     const [view, setView] = useState("LoginPage");
     const [user, setUser] = useState(null);
     const [selectedKey, setSelectedKey] = useState(null);
+    const [action, setAction] = useState(null); // "checkout" or "checkin"
 
     return (
         <div>
@@ -19,15 +20,17 @@ const App = () => {
             )}
             {view === "KeySelect" && (
                 <KeySelect
-                    user={user}
+                    employee_id={user?.employee_id}
                     setView={setView}
                     setSelectedKey={setSelectedKey}
+                    setAction={setAction}
                 />
             )}
             {view === "ConfirmPage" && (
                 <ConfirmPage
                     user={user}
                     selectedKey={selectedKey}
+                    action={action}
                     setView={setView}
                 />
             )}
