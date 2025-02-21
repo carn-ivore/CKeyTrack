@@ -8,6 +8,8 @@ import "./KeySelect.css"; // Import the CSS file
 
 const KeySelect = ({ user, setView, setSelectedKey }) => {
     const [availableKeys, setAvailableKeys] = useState([]);
+    const [checkedOutKeys, setCheckedOutKeys] = useState([]);
+    const [unavailableKeys, setUnavailableKeys] = useState([]);
     console.log("User object:", user);
 
     useEffect(() => {
@@ -23,8 +25,12 @@ const KeySelect = ({ user, setView, setSelectedKey }) => {
                         employee_id: user.employee_id,
                     }
                 );
-                console.log("Response from backend:", response); // This logs the entire response from wherever it's getting the info
+
+                console.log("Response from backend:", response.data); // This logs the entire response from wherever it's getting the info
+
                 setAvailableKeys(response.data.data || []); // Set the available keys from the response
+                setCheckedOutKeys(response.data.checkedOutKeys || []);
+                setUnavailableKeys(response.data.unavailableKeys || []);
             } catch (error) {
                 if (error.response && error.response.data) {
                     console.error(
