@@ -1,35 +1,35 @@
 {
-  "name": "ckeytrack",
-  "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "flow": "flow"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/carn-ivore/CKeyTrack.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/carn-ivore/CKeyTrack/issues"
-  },
-  "homepage": "https://github.com/carn-ivore/CKeyTrack#readme",
-  "description": "",
-  "dependencies": {
-    "@testing-library/jest-dom": "^6.6.3",
-    "@testing-library/react": "^16.2.0",
-    "cors": "^2.8.5",
-    "dotenv": "^16.4.7",
-    "express": "^4.21.2",
-    "googleapis": "^144.0.0"
-  },
-  "devDependencies": {
-    "@types/react": "^19.0.10",
-    "@types/react-dom": "^19.0.4",
-    "flow-bin": "^0.261.1",
-    "flow-typed": "^4.0.0"
-  }
+    "name": "ckeytrack",
+    "version": "1.0.0",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "flow": "flow"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/carn-ivore/CKeyTrack.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/carn-ivore/CKeyTrack/issues"
+    },
+    "homepage": "https://carn-ivore.github.io/CKeyTrack",
+    "description": "",
+    "dependencies": {
+        "@testing-library/jest-dom": "^6.6.3",
+        "@testing-library/react": "^16.2.0",
+        "cors": "^2.8.5",
+        "dotenv": "^16.4.7",
+        "express": "^4.21.2",
+        "googleapis": "^144.0.0"
+    },
+    "devDependencies": {
+        "@types/react": "^19.0.10",
+        "@types/react-dom": "^19.0.4",
+        "flow-bin": "^0.261.1",
+        "flow-typed": "^4.0.0"
+    }
 }
