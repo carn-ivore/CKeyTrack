@@ -1,0 +1,5 @@
+# .gitignore
+/backend/utils/ckeytrack-cloud-7c482eb31f9b.json
+node_modules/
+.env
+frontendd/
